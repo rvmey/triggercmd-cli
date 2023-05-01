@@ -100,7 +100,7 @@ def list():
     console.rule("")
 
 
-@command_app.command(help="Test a commands.")
+@command_app.command(help="Test a command.")
 def test(trigger: str = typer.Option("", help="Trigger name")):
     """
     It tests a command
@@ -115,12 +115,12 @@ def test(trigger: str = typer.Option("", help="Trigger name")):
         commands = functions.get_command_titles()
         trigger = CommandWizard.select_command(commands).get("trigger")
 
-    response, status = Command.test("lenovo", trigger)
+    response, status = Command.test("ds", trigger)
 
     if status == 200:
         message = f"[green]Success[/] {response.get('message')}"
     else:
-        message = f"[red]Error[/] {response.get('error').get('response')}"
+        message = f"[red]Error[/] {response.get('error')}"
 
     console.print(message)
     console.rule()
